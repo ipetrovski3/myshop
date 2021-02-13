@@ -1,0 +1,12 @@
+    <h1>Пристигната е нова нарачка од:, <%= @order.name %></h1>
+    <p>
+      <ul>
+        <li><%= @order.name %></li>
+        <li><%= @order.address %>, <%= @order.town %></li>
+        <li><%= @order.phone %></li>
+        <li><%= @order.qty %></li>
+        <li><%= @order.size %></li>
+        <% if @order.note.present? %>
+          <li><%= @order.note %></li>
+        <% end %>
+      </ul>

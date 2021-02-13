@@ -9,6 +9,7 @@ class OrdersController < ApplicationController
     @order = @product.orders.build(order_params)
 
     if @order.save
+      OrderMailer.with(order: @order).order_received.deliver_later
       redirect_to @order
     else
       render :new

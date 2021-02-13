@@ -13,6 +13,8 @@ export default class extends Controller {
 
   value() {
     let selected = this.element.value
+    let qty = document.getElementById('qty')
+    qty.innerHTML = selected
     let div = document.getElementById("score")
     let railsValue = div.dataset.id
     div.innerHTML = `${(selected * railsValue) + 130}`
@@ -23,4 +25,5 @@ export default class extends Controller {
     let div = document.getElementById("size")
     div.innerHTML = selected
   }
+
 }

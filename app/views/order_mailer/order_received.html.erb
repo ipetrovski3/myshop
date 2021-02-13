@@ -1,12 +1,16 @@
-    <h1>Пристигната е нова нарачка од:, <%= @order.name %></h1>
+    <h1>Пристигната е нова нарачка од: <%= @order.name %></h1>
     <p>
       <ul>
-        <li><%= @order.name %></li>
-        <li><%= @order.address %>, <%= @order.town %></li>
-        <li><%= @order.phone %></li>
-        <li><%= @order.qty %></li>
-        <li><%= @order.size %></li>
+        <li>Име на нарачателот: <%= @order.name %></li>
+        <li>Адреса и град: <%= @order.address %>, <%= @order.town %></li>
+        <li>Телефон: <%= @order.phone %></li>
+        <li>Количина: <%= @order.qty %></li>
+        <% if @order.size.present? %>
+          <li>Големина <%= @order.size %></li>
+        <% end %>  
         <% if @order.note.present? %>
           <li><%= @order.note %></li>
         <% end %>
+          <li><%= @order.price %></li>
+          <li><%= @order.total_price %></li>
       </ul>

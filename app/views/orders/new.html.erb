@@ -24,12 +24,12 @@
       <div class="-mx-3 md:flex mb-4">
         <div class="md:w-1/2 px-3 mb-6 md:mb-0">
           <%= f.label :qty, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-          <%= f.select :qty, options_for_select(1.upto(10)), {default: 1}, class:"form-select block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-4" %> 
+          <%= f.select :qty, options_for_select(1.upto(10)), {default: 1}, data: { controller: "hello", action:"change->hello#value"}, class:"form-select block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-4" %> 
         </div>  
         <div class="md:w-1/2 px-3 mb-6 md:mb-0">
           <% if @product.category.size? %>
             <%= f.label :size, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-            <%= f.select :size, options_for_select(Order::SIZES), {prompt: "Please Select"}, class:"form-select block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-4" %>        
+            <%= f.select :size, options_for_select(Order::SIZES), { include_blank: "Ве молиме изберете големина..." }, data: { controller: "hello", action:"change->hello#size"}, class:"form-select block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-4" %>        
           <% end %>
         </div>
       </div>
@@ -62,10 +62,10 @@
           </div>
           <div class="md:w-1/2 px-3 mb-6 md:mb-0 ml-10">
             <p class="mb-2"><strong><i class="fas fa-tag text-green-600"></i> Цена на производот: </strong><%= @product.price %>Ден</p>
-            <p class="mb-2"><strong><i class="fas fa-arrows-alt-v"></i> Големина: </strong></p>
+            <p class="mb-2"><strong><i class="fas fa-arrows-alt-v"></i> Големина:  </strong> <span id="size"></span></p>
             <p class="mb-2"><strong><i class="fas fa-shipping-fast text-yellow-700"></i> Карго: </strong> 130ден</p> 
             <p class="mb-2"><strong><i class="fas fa-cart-arrow-down"></i> Количина: </strong></p> 
-            <p class="mb-2"><strong><i class="fas fa-receipt"></i></i> Вкупна сума за плаќање: </strong><%= @product.price + 130 %>Ден</p> 
+            <p class="mb-2 bg-green-100 py-1 px-2 rounded text-green-500 align-middle"><strong><i class="fas fa-receipt"></i></i> Вкупна сума за плаќање: </strong><span id='score' data-id="<%= @product.price %>"><%= @product.price + 130 %></span>Ден</p>  <div id='score' data-id="<%= @product.price %>"></div>
           </div>
         </div>
       <div class="m-6 space-y-3">
@@ -74,3 +74,7 @@
       <% end %>
   </div>
 </div>
+
+              <div class="col mb-2">
+
+                 <div id='score' data-id="<%= @product.price %>">

@@ -31,3 +31,13 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      order:
+        name: "Име"
+        town: "Град"
+        phone: "Телефон"
+        address: "Адреса"
+        qty: "Количина"
+        size: "Големина"
+        note: "Забелешка"

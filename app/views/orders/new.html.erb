@@ -1,76 +1,93 @@
-
-
 <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
   <div class="-mx-3 md:flex mb-6">
-      <%= form_with model: [@product, @order], local: true do |f| %>
-      <div class="md:w-full mb-6 md:mb-0">
-        <%= f.label :name, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-        <%= f.text_field :name, class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-1 px-4 mb-3" %>
+    <%= form_with model: [@product, @order], local: true do |f| %>
+      <div class="md:w-full mb-6 md:mb-2">
+        <%= f.label :name, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-1" %>
+        <%= f.text_field :name, class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-1 px-4" %>
+        <% if @order.errors[:name].any? %>
+          <span class="text-xs text-red-700" id="passwordHelp"><%= @order.errors.messages[:name][0] %></span>
+        <% end %>
       </div>
       <div class="-mx-3 md:flex mb-4">
-        <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-          <%= f.label :address, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+        <div class="md:w-1/2 px-3 mb-6 md:mb-2">
+          <%= f.label :address, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-1" %>
           <%= f.text_field :address, class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-4" %>
+          <% if @order.errors[:address].any? %>
+            <span class="text-xs text-red-700" id="passwordHelp"><%= @order.errors.messages[:address][0] %></span>
+          <% end %>
         </div>
-        <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-          <%= f.label :town, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+        <div class="md:w-1/2 px-3 mb-6 md:mb-2">
+          <%= f.label :town, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-1" %>
           <%= f.text_field :town, class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-4" %>
+          <% if @order.errors[:town].any? %>
+            <span class="text-xs text-red-700" id="passwordHelp"><%= @order.errors.messages[:town][0] %></span>
+          <% end %>
         </div>
-        <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-          <%= f.label :phone, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+        <div class="md:w-1/2 px-3 mb-6 md:mb-2">
+          <%= f.label :phone, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-1" %>
           <%= f.text_field :phone, class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-4" %>
+          <% if @order.errors[:phone].any? %>
+            <span class="text-xs text-red-700" id="passwordHelp"><%= @order.errors.messages[:phone][0] %></span>
+          <% end %>
         </div>
-      </div>  
+      </div>
       <div class="-mx-3 md:flex mb-4">
-        <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-          <%= f.label :qty, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-          <%= f.select :qty, options_for_select(1.upto(10)), { include_blank: "Ве молиме изберете количина..." }, data: { controller: "hello", action:"change->hello#value"}, class:"form-select block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-4" %> 
-        </div>  
-        <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+        <div class="md:w-1/2 px-3 mb-6 md:mb-2">
+          <%= f.label :qty, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-1" %>
+          <%= f.select :qty, options_for_select(1.upto(10)), { include_blank: "Ве молиме изберете количина..." }, data: { controller: "hello", action:"change->hello#value"}, class:"form-select block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-4" %>
+          <% if @order.errors[:qty].any? %>
+            <span class="text-xs text-red-700" id="passwordHelp"><%= @order.errors.messages[:qty][0] %></span>
+          <% end %>
+        </div>
+        <div class="md:w-1/2 px-3 mb-6 md:mb-2">
           <% if @product.category.size? %>
-            <%= f.label :size, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-            <%= f.select :size, options_for_select(Order::SIZES), { include_blank: "Ве молиме изберете големина..." }, data: { controller: "hello", action:"change->hello#size"}, class:"form-select block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-4" %>        
+            <%= f.label :size, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-1" %>
+            <%= f.select :size, options_for_select(Order::SIZES), { include_blank: "Ве молиме изберете големина..." }, data: { controller: "hello", action:"change->hello#size"}, class:"form-select block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-4" %>
+            <% if @order.errors[:size].any? %>
+              <span class="text-xs text-red-700" id="passwordHelp"><%= @order.errors.messages[:size][0] %></span>
+            <% end %>
           <% end %>
         </div>
       </div>
       <div class="-mx-3 md:flex mb-4">
         <div class="md:w-full px-3 mb-6 md:mb-0">
-         <%= f.label :note, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-         <%= f.text_area :note, class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-1 px-4 mb-3", placeholder:"Оставете коментар доколку имате некое посебно барање околу нарачката..." %>
+          <%= f.label :note, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+          <%= f.text_area :note, class:"appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-1 px-4 mb-3", placeholder:"Оставете коментар доколку имате некое посебно барање околу нарачката..." %>
         </div>
       </div>
       <hr>
-        <h3 class="text-center block uppercase mt-4 tracking-wide text-grey-darker text-xs font-bold mb-2">Опции за плаќање</h3> 
-        <div class="block">
-          <div class="mt-2">
-            <label class="inline-flex items-center mr-10">
-              <input type="radio" class="form-radio text-indigo-600" name="radio-colors" value="1" checked>
-              <span class="ml-2">На Врата</span>
-            </label>
-            <label class="inline-flex items-center mb-4">
-              <input type="radio" class="form-radio text-green-500 " disabled="disabled" name="radio-colors" value="2">
-              <span class="ml-2 text-gray-300">Плати онлајн </span>
-              <span class="text-xs text-gray-300 inline ml-2">  (моментално оваа услуга не е достапна) </span>
-            </label>
-          </div>
-        </div>  
-        <hr>
-        <h2 class="text-center block uppercase mt-4 tracking-wide text-grey-darker text-lg font-bold mb-2"><%= @product.name %></h3> 
-        <div class="-mx-3 md:flex mb-4">
-          <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-              <%= image_tag @product.image %>
-          </div>
-          <div class="md:w-1/2 px-3 mb-6 md:mb-0 ml-10 bg-green-100 rounded">
-            <p class="mb-2 mt-5"><strong><i class="fas fa-tag text-green-600"></i> Цена на производот: </strong><%= @product.price %>Ден</p>
-            <p class="mb-2"><strong><i class="fas fa-arrows-alt-v"> </i>  Големина:  </strong> <span id="size"></span></p>
-            <p class="mb-2"><strong><i class="fas fa-cart-arrow-down"></i> Количина: </strong><span id="qty"></span></p> 
-            <p class="mb-8"><strong><i class="fas fa-shipping-fast text-yellow-700"></i> Карго: </strong> 130ден</p> 
-            <p class="mt-10 py-1 px-2 rounded  bg-green-300 text-green-800 align-middle text-xl	"><strong><i class="fas fa-receipt"></i></i> Вкупен износ за плаќање: </strong><span id='score' data-id="<%= @product.price %>"><%= @product.price + 130 %></span>Ден</p>  <div id='score' data-id="<%= @product.price %>"></div>
-          </div>
+      <h3 class="text-center block uppercase mt-4 tracking-wide text-grey-darker text-xs font-bold mb-2">Опции за плаќање</h3>
+      <div class="block">
+        <div class="mt-2">
+          <label class="inline-flex items-center mr-10">
+            <input type="radio" class="form-radio text-indigo-600" name="radio-colors" value="1" checked>
+            <span class="ml-2">На Врата</span>
+          </label>
+          <label class="inline-flex items-center mb-4">
+            <input type="radio" class="form-radio text-green-500 " disabled="disabled" name="radio-colors" value="2">
+            <span class="ml-2 text-gray-300">Плати онлајн </span>
+            <span class="text-xs text-gray-300 inline ml-2">  (моментално оваа услуга не е достапна) </span>
+          </label>
         </div>
-      <div class="m-6 space-y-3">
-        <%= f.submit "ПОТВРДИ ЈА НАРАЧКАТА", class:"block w-full px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none" %>
       </div>
-      <% end %>
+      <hr>
+      <h2 class="text-center block uppercase mt-4 tracking-wide text-grey-darker text-lg font-bold mb-2"><%= @product.name %></h3>
+      <div class="-mx-3 md:flex mb-4">
+        <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+          <%= image_tag @product.image %>
+        </div>
+        <div class="md:w-1/2 px-3 mb-6 md:mb-0 ml-10 bg-green-100 rounded">
+          <p class="mb-2 mt-5"><strong><i class="fas fa-tag text-green-600"></i> Цена на производот: </strong><%= @product.price %>Ден</p>
+          <p class="mb-2"><strong><i class="fas fa-arrows-alt-v"> </i>  Големина:  </strong> <span id="size"></span></p>
+          <p class="mb-2"><strong><i class="fas fa-cart-arrow-down"></i> Количина: </strong><span id="qty"></span></p>
+          <p class="mb-8"><strong><i class="fas fa-shipping-fast text-yellow-700"></i> Карго: </strong> 130ден</p>
+          <p class="mt-10 py-1 px-2 rounded text-center bg-green-300 text-green-800 align-middle text-xl	"><strong><i class="fas fa-receipt"></i></i> Вкупен износ за плаќање: </strong><span id='score' data-id="<%= @product.price %>"><%= @product.price + 130 %></span>Ден</p>
+        <div id='score' data-id="<%= @product.price %>"></div>
+      </div>
+    </div>
+    <div class="m-6 space-y-3">
+      <%= f.submit "ПОТВРДИ ЈА НАРАЧКАТА", data: { confirm: "Дали сте сигурни?" }, class:"block w-full px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none" %>
+    </div>
+    <% end %>
   </div>
 </div>

@@ -1,0 +1,42 @@
+
+<div class="w-full  p-6">
+  <h1 class="text-white mb-3"> Нарачки </h1>
+    <h2 class="text-white mb-3">Вкупно Нарачки: <%= @orders.count %> | Статус примени: <%= @orders.received.count %> | Статус потврдени: <%= @orders.confirmed.count %></h2>
+  
+<% @orders.each do |order| %>
+  <div class="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-5 mb-3">
+    <div class="flex flex-row items-center">
+      <div class="flex-shrink pr-4">
+          <div class="rounded-full p-5 <%= order.color_class %>"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+      </div>
+      <div class="flex-1 text-right md:text-center">
+        <h3 class="font-bold text-3xl">Купувач: <%= order.name %></h3>
+        <span>Продукт: <%= order.product.name %> |</span>
+        <span>Адреса: <%= order.full_address %> |</span>
+        <span>Телефон: <%= order.phone %> |</span>
+        <span>Количина: <%= order.qty %> |</span>
+      </div>
+      <div class="flex-1 text-right md:text-center">
+        <div class="relative inline-flex">
+        <i class="fas fa-sort-down w-2 h-2 absolute text-white -top-1 right-0 m-3 pointer-events-none"></i>
+          <select data-reflex="change->StatusReflex#status_change"
+              data-id="<%= order.id %>" 
+              data-status=" <%= order.status%> "
+              class="border border-gray-300 rounded-full text-gray-100 h-10 pl-5 pr-10 <%= order.color_class %> hover:border-gray-400 focus:outline-none appearance-none">
+            <option value="none" selected disabled hidden ><%= order.status %></option>
+            <% Order::STATUS.each do |status| %>
+              <option id="test" value="<%= status %>"> <%= status %>
+              </option>
+            <% end %>
+          </select>
+                  <i class="fas fa-sort-down w-2 h-2 absolute text-white -top-1 right-0 m-3 pointer-events-none"></i>
+        </div>
+         <div class="relative inline-flex ml-5">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" data-reflex="click->DeleteReflex#delete" data-id="<%= order.id %>"><i class="fas fa-trash-alt"></i></button>
+        </div>  
+      </div>
+    </div>
+  </div>
+<% end %>
+    <!--/Metric Card-->
+</div>

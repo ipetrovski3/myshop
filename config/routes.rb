@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/admin/categories/new', to: 'categories#new'
+  post '/admin/categories/new', to: 'categories#create'
   get '/admin/products/new', to: 'products#new'
   post '/admin/products/new', to: 'products#create'
   get '/admin/orders', to: 'orders#index'

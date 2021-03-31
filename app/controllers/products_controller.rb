@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to @product.category
+      redirect_to admin_path
     else
       render new
     end
@@ -17,6 +17,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :price, :description, :featured)
+    params.permit(:name, :price, :description, :featured, :category_id, :image)
   end
 end

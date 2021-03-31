@@ -1,4 +1,10 @@
 class OrdersController < ApplicationController
+  layout 'admin_panel', only: %i[index edit destroy]
+
+  def index
+    @orders = Order.all.order(status: :asc)
+  end
+
   def new
     @product = Product.find(params[:product_id])
     @order = @product.orders.build

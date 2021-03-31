@@ -32,3 +32,14 @@ p = Product.all
 p.each do |prod|
   prod.image.attach(io: File.open('app/assets/images/shirt.png'), filename: 'shirt.png', content_type: 'image/png')
 end
+
+10.times do
+  Order.create!(product_id: Product.last.id,
+                name: Faker::Name.name,
+                address: Faker::Address.street_name,
+                town: Faker::Address.city,
+                phone: Faker::PhoneNumber.cell_phone,
+                qty: rand(5))
+end
+
+puts "#{Order.count}"

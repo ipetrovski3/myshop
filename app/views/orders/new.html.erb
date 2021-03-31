@@ -76,18 +76,77 @@
         <div class="md:w-1/2 px-3 mb-6 md:mb-0">
           <%= image_tag @product.image %>
         </div>
-        <div class="md:w-1/2 px-3 mb-6 md:mb-0 ml-10 bg-green-100 rounded">
-          <p class="mb-2 mt-5"><strong><i class="fas fa-tag text-green-600"></i> Цена на производот: </strong><%= @product.price %>Ден</p>
-          <p class="mb-2"><strong><i class="fas fa-arrows-alt-v"> </i>  Големина:  </strong> <span id="size"></span></p>
-          <p class="mb-2"><strong><i class="fas fa-cart-arrow-down"></i> Количина: </strong><span id="qty"></span></p>
-          <p class="mb-8"><strong><i class="fas fa-shipping-fast text-yellow-700"></i> Карго: </strong> 130ден</p>
-          <p class="mt-10 py-1 px-2 rounded text-center bg-green-300 text-green-800 align-middle text-xl	"><strong><i class="fas fa-receipt"></i></i> Вкупен износ за плаќање: </strong><span id='score' data-id="<%= @product.price %>"><%= @product.price + 130 %></span>Ден</p>
-        <div id='score' data-id="<%= @product.price %>"></div>
+        <div class="flex flex-col ml-4 mt-5">
+          <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+              <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                <table class="min-w-full divide-y divide-gray-200">
+                  <tbody class="bg-white divide-y divide-gray-200">
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                          <div class="ml-4">
+                            <div class="text-sm font-medium text-gray-900">
+                              <strong><i class="fas fa-tag text-green-600"></i> Цена на производот: </strong><%= @product.price %>Ден
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <% if @product.category.size? %>
+                      <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                            <div class="ml-4">
+                              <div class="text-sm font-medium text-gray-900">
+                                <strong><i class="fas fa-arrows-alt-v"> </i>  Големина:  </strong> <span id="size"></span>                    </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                          <div class="ml-4">
+                            <div class="text-sm font-medium text-gray-900">
+                              <strong><i class="fas fa-cart-arrow-down"></i> Количина: </strong><span id="qty"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="flex items-center">
+                        <div class="ml-4">
+                          <div class="text-sm font-medium text-gray-900">
+                            <strong><i class="fas fa-shipping-fast text-yellow-700"></i> Карго: </strong> 130.0ден
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap bg-gray-300">
+                      <div class="flex items-center">
+                        <div class="ml-4">
+                          <div class="text-sm font-medium text-gray-900">
+                            <strong><i class="fas fa-receipt"></i></i> Вкупен износ за плаќање: </strong><span id='score' data-id="<%= @product.price %>"><%= (@product.price + 130).to_f %></span>Ден                    </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="m-6 space-y-3">
-      <%= f.submit "ПОТВРДИ ЈА НАРАЧКАТА", data: { confirm: "Дали сте сигурни?" }, class:"block w-full px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none" %>
-    </div>
-    <% end %>
   </div>
+  <div class="m-6 space-y-3">
+    <%= f.submit "ПОТВРДИ ЈА НАРАЧКАТА", data: { confirm: "Дали сте сигурни?" }, class:"block w-full px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none" %>
+  </div>
+<% end %>
 </div>
+</div>
+<!-- This example requires Tailwind CSS v2.0+ -->

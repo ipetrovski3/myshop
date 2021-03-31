@@ -18,8 +18,6 @@ export default class extends ApplicationController {
 
   connect () {
     super.connect()
-    this.beforeReflex
-    alert('Are You Sure?')
     // add your code here, if applicable
   }
 

@@ -32,7 +32,10 @@
                   <i class="fas fa-sort-down w-2 h-2 absolute text-white -top-1 right-0 m-3 pointer-events-none"></i>
         </div>
          <div class="relative inline-flex ml-5">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" data-reflex="click->DeleteReflex#delete" data-id="<%= order.id %>"><i class="fas fa-trash-alt"></i></button>
+            <button data-confirm="Дали сте сигурни дека сакате да ја избришете нарачката?"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" 
+                    data-reflex="confirm:click->DeleteReflex#delete" 
+                    data-id="<%= order.id %>"><i class="fas fa-trash-alt"></i></button>
         </div>  
       </div>
     </div>

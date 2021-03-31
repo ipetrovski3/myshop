@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   layout 'admin_panel', only: %i[index edit destroy]
 
   def index
-    @orders = Order.all.order(created_at: :asc)
+    @orders = Order.all.order(status: :asc)
   end
 
   def new

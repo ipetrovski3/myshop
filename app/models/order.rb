@@ -7,10 +7,9 @@ class Order < ApplicationRecord
   before_save :set_price
   before_save :set_total_price
 
-  scope :received, -> { where(status: 'Received') }
-  scope :confirmed, -> { where(status: 'Confirmed') }
-  scope :delivered, -> { where(status: 'Delivered') }
-  scope :unproccesed_order, -> { where(completed: false) }
+  STATUS.each do |status|
+    scope status.downcase, -> { where(status: status) }
+  end
 
   validates_presence_of :name, message: 'Внесете Име и Презиме'
   validates_presence_of :address, message: 'Внесете Адреса'

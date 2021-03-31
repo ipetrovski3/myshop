@@ -24,6 +24,8 @@ gem 'redis', '~> 4.0'
 gem 'pagy'
 gem 'devise'
 
+gem 'mimemagic', '0.3.5', git: 'https://github.com/mimemagicrb/mimemagic', ref: '01f92d8'
+
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
 
